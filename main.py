@@ -67,7 +67,7 @@ print(f"\nAdded {quantity} slice(s) of {selected_meat['name']} "
     f"for ${meat_price:.2f} and {meat_weight}g.")
 
 
-#cheese selection
+#Cheese selection
 
 print("\n" + "-" * 40)
 print("\nChoose your cheese:\n")
@@ -98,9 +98,51 @@ while True:
     cheese_weight = selected_cheese["weight"] * quantity
     order.append({
         "name": selected_cheese["name"],
-        "quantity": cheese_quantity,
+        "quantity": quantity,
         "price": cheese_price,
         "weight": cheese_weight
     })
 
-     
+
+#Topping selection
+
+print("\n" + "-" * 40)
+print("\nChoose your toppings:\n")
+
+for number, topping in toppings.items():
+    print(
+        f"{number}. {topping['name']} - "
+        f"${topping['price']:.2f} - "
+        f"{topping['weight']}g"
+    )
+
+print("5. Finished adding toppings") 
+
+while True:
+    topping_choice = input("\nEnter your choice: ")
+    if topping_choice == "5":
+        break
+    elif topping_choice in toppings:
+        selected_topping = toppings[topping_choice]
+        order.append({
+            "name": selected_topping["name"],
+            "quantity": 1,
+            "price": selected_topping["price"],
+            "weight": selected_topping["weight"]
+        })
+
+        print(f"{selected_topping['name']} added. ")
+    else:
+        print("Invalid choice. Please try again.")
+
+
+#Calculate total price and weight
+
+total_price = 0
+total_weight = 0
+for item in order:
+    total_price += item["price"]
+    total_weight += item["weight"]
+
+
+#Order
