@@ -29,29 +29,39 @@ while True:
 #Meat selection
 
 print("\n" + "-" * 40)
-print("\nChoose your meat:\n")
+print("Choose your meat:\n")
 
 for number, meat in meats.items():
-    print(f"{number}. {meat['name']} - "
-          f"${meat['price']:.2f} per slice - "
-          f"{meat['weight']}g per slice"
-          )
+    print(
+        f"{number}. {meat['name']} - "
+        f"${meat['price']:.2f} per slice - "
+        f"{meat['weight']}g per slice"
+    )
 
-    while True:
-        meat_choice = input("\nEnter your choice: ")
-        if meat_choice in meats:
-            selected_meat = meats[meat_choice]
+while True:
+    meat_choice = input("\nEnter your choice: ")
+
+    if meat_choice in meats:
+        selected_meat = meats[meat_choice]
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
+
+
+while True:
+    quantity = input(
+        f"How many slices of {selected_meat['name']} would you like? "
+    )
+
+    if quantity.isdigit():
+        quantity = int(quantity)
+
+        if quantity > 0:
             break
-        else:
-            print("Invalid choice. Please try again.")
 
-    while True:
-        quantity = input(f"How many slices of {selected_meat['name']} would you like? ")
-        if quantity.isdigit():
-            quantity = int(quantity)
-            if quantity > 0:
-                break
-        print("Please enter a whole number.")
+    print("Please enter a positive whole number.")
+
 
 meat_price = selected_meat["price"] * quantity
 meat_weight = selected_meat["weight"] * quantity
@@ -63,8 +73,10 @@ order.append({
     "weight": meat_weight
 })
 
-print(f"\nAdded {quantity} slice(s) of {selected_meat['name']} "
-    f"for ${meat_price:.2f} and {meat_weight}g.")
+print(
+    f"\nAdded {quantity} slice(s) of {selected_meat['name']} "
+    f"for ${meat_price:.2f} and {meat_weight}g."
+)
 
 
 #Cheese selection
