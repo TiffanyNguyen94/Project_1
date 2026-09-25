@@ -8,7 +8,7 @@ print("=" * 40)
 #Bread selection
 
 print("\nChoose your bread:\n")
-for number, bread in bread.items():
+for number, bread in breads.items():
     print(f"{number}. {bread['name']} - " 
           f"${bread['price']:.2f} - "
           f"{bread['weight']}g"
