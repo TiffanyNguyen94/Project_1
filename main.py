@@ -65,3 +65,42 @@ order.append({
 
 print(f"\nAdded {quantity} slice(s) of {selected_meat['name']} "
     f"for ${meat_price:.2f} and {meat_weight}g.")
+
+
+#cheese selection
+
+print("\n" + "-" * 40)
+print("\nChoose your cheese:\n")
+
+for number, cheese in cheeses.items():
+    print(f"{number}. {cheese['name']} - "
+          f"${cheese['price']:.2f} per slice - "
+          f"{cheese['weight']}g per slice"
+          )
+
+while True:
+    cheese_choice = input("\nEnter your choice: ")
+    if cheese_choice in cheeses:
+        selected_cheese = cheeses[cheese_choice]
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+while True:
+    quantity = input(f"How many slices of {selected_cheese['name']} would you like? ")
+    if quantity.isdigit():
+        quantity = int(quantity)
+        if quantity > 0:
+            break
+    print("Please enter a whole number.")   
+
+    cheese_price = selected_cheese["price"] * quantity
+    cheese_weight = selected_cheese["weight"] * quantity
+    order.append({
+        "name": selected_cheese["name"],
+        "quantity": cheese_quantity,
+        "price": cheese_price,
+        "weight": cheese_weight
+    })
+
+     
