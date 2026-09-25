@@ -145,4 +145,30 @@ for item in order:
     total_weight += item["weight"]
 
 
-#Order
+#Order summary
+
+print("\n")
+print("=" * 40)
+print("      ORDER SUMMARY")
+print
+
+for item in order:
+    if item["quantity"] > 1:
+        print(
+            f"{item['quantity']} x {item['name']} -"
+            f" ${item['price']:.2f}"
+            f" - {item['weight']}g"
+        )
+    else:
+        print(
+            f"{item['name']} -"
+            f" ${item['price']:.2f}"
+            f" - {item['weight']}g"
+        )
+
+print("-" * 40)
+print(f"Total Price: ${total_price:.2f}")
+print(f"Total Weight: {total_weight}g")
+print("=" * 40)
+
+print("\nThank you for using the Custom Sandwich Builder! Enjoy your meal!")
